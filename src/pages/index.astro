@@ -13,20 +13,22 @@ import Mail from "../components/icons/Mail.astro";
 	title="Portafolio de Samuel Vargas. Desarrollador y Programador en Flutter"
 	description="Conoce a Samuel Vargas, desarrollador y programador en Flutter ubicado en Bogotá, Colombia. Conoce más sobre su experiencia y proyectos."
 >
-	<main>
+	<main class="px-4">
 		<section class="w-full lg:w-[740px] mx-auto py-44">
 			<h1
-				class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4"
+				class="text-white text-2xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-4"
 			>
 				Hola, soy Samuel Vargas
 			</h1>
-			<h2 class="opacity-80 text-2xl text-wrap">
+			<h2
+				class="opacity-80 text-2xl lg:text-3xl max-w-[700px] text-pretty"
+			>
 				Desarrollador en Flutter con 1 año de experiencia. De Bogotá,
 				Colombia. En busca de alcanzar siempre nuevos horizontes.
 			</h2>
 
 			<!-- Contact info -->
-			<nav class="flex gap-x-2 flex-row py-6">
+			<nav class="flex gap-4 flex-row py-6 flex-wrap">
 				<!-- GitHub -->
 				<IconLink
 					href="https://github.com/Sjvc0595"
@@ -42,7 +44,11 @@ import Mail from "../components/icons/Mail.astro";
 				/>
 
 				<!-- Mail -->
-				<IconLink href="" icon={Mail} label="sjvc0595@gmail.com" />
+				<IconLink
+					href="mailto:sjvc0595@gmail.com"
+					icon={Mail}
+					label="sjvc0595@gmail.com"
+				/>
 			</nav>
 		</section>
 	</main>

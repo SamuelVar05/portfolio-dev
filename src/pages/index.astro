@@ -6,13 +6,16 @@ import IconLink from "../components/IconLink.astro";
 // Icons
 import LinkedIn from "../components/icons/LinkedIn.astro";
 import GitHub from "../components/icons/GitHub.astro";
+import Mail from "../components/icons/Mail.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Portafolio de Samuel Vargas. Desarrollador y Programador en Flutter">
 	<main>
 		<section class="w-full lg:w-[740px] mx-auto py-44">
-			<h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4">
-				Hola, soy Samuel Vargas 
+			<h1
+				class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4"
+			>
+				Hola, soy Samuel Vargas
 			</h1>
 			<h2 class="opacity-80 text-2xl text-wrap">
 				Desarrollador en Flutter con 1 año de experiencia. De Bogotá,
@@ -20,12 +23,28 @@ import GitHub from "../components/icons/GitHub.astro";
 			</h2>
 
 			<!-- Contact info -->
-			 <ul class="py-6">
+			<nav class="flex gap-x-2 flex-row py-6">
 				<!-- GitHub -->
-				<li><IconLink href="https://github.com/Sjvc0595" icon={GitHub} label="GitHub" /></li>
+				<IconLink
+					href="https://github.com/Sjvc0595"
+					icon={GitHub}
+					label="GitHub"
+				/>
+
 				<!-- Linkedin -->
-				<li><IconLink href="https://www.linkedin.com/in/sjvc0595" icon={LinkedIn} label="LinkedIn" /></li>
-			 </ul>
+				<IconLink
+					href="https://www.linkedin.com/in/sjvc0595"
+					icon={LinkedIn}
+					label="LinkedIn"
+				/>
+
+				<!-- Mail -->
+				<IconLink
+					href=""
+					icon={Mail}
+					label="sjvc0595@gmail.com"
+				/>
+			</nav>
 		</section>
 	</main>
 </Layout>

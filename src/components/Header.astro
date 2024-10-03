@@ -1,14 +1,27 @@
-<header class="flex justify-between items-center py-3 w-full xl:w-[1120px] mx-auto">
+---
+const navItems = [
+    { name: "Home", href: "#top", label: "home" },
+    { name: "Projects", href: "#projects", label: "projects" },
+    { name: "About", href: "#about", label: "about" },
+    { name: "Contact", href: "#contact", label: "contact" },
+];
+---
+
+<header
+    class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2 gap-x-10 lg:gap-x-20 py-2"
+>
     <img
         class="size-12 rounded-full"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
         alt="Samuel Vargas"
     />
 
-    <nav class="flex flex-row gap-x-20 opacity-80">
-        <a href="#top">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+    <nav class="flex flex-row gap-x-5 lg:gap-x-20 opacity-80">
+        <!-- Loop through navItems -->
+        <!-- Each item has a name, href, and label -->
+        <!-- The label is used to highlight the current page -->
+        <!-- The href is used to navigate to the page -->
+        <!-- The name is used to display the name of the page -->
+        {navItems.map((item) => <a href={item.href}>{item.name}</a>)}
     </nav>
 </header>

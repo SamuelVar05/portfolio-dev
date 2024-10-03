@@ -1,0 +1,33 @@
+---
+const PROJECTS = [
+    {
+        title: "StudyBuddy",
+        description:
+            "Aplicación móvil para ayudar a estudiantes en el aprendizaje de un nuevo idioma.",
+        image: "https://via.placeholder.com/150",
+        tags: ["Flutter", "Dart", "Firebase"],
+    },
+    {
+        title: "Evaluación Docente",
+        description:
+            "Página web para la evaluación de docentes mediante el uso de encuestas a estudiantes.",
+        image: "https://via.placeholder.com/150",
+        tags: ["HTML", "CSS", "JavaScript", "Python", "Django"],
+    },
+];
+---
+
+{
+    PROJECTS.map((project) => (
+        <article>
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <ul>
+                {project.tags.map((tag) => (
+                    <li>{tag}</li>
+                ))}
+            </ul>
+            <img src={project.image} alt={project.title} />
+        </article>
+    ))
+}

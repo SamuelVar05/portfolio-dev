@@ -1,0 +1,54 @@
+---
+import IconLink from "./IconLink.astro";
+
+import GitHub from "./icons/GitHub.astro";
+import Bullseye from "./icons/Bullseye.astro";
+
+
+interface Tag {
+    name: string;
+    classList: string;
+    icon: any;
+}
+
+interface Project {
+    title: string;
+    description: string;
+    image: string;
+    tags: Tag[];
+    github?: string;
+    link?: string;
+}
+
+const { title, description, image, tags, github, link } = Astro.props.project as Project;
+---
+
+<article class="border rounded-lg my-10 p-5 flex flex-row">
+    <img class="m-5" src={image} alt={title} />
+    <div>
+        <h3 class="text-xl font-semibold">{title}</h3>
+        <ul class="flex flex-row gap-x-2 my-5">
+            {
+                tags.map((tag) => (
+                    <li>
+                        <span
+                            class={`flex gap-x-2 rounded-full text-xs ${tag.classList} py-2 px-2 font-bold `}
+                        >
+                            <tag.icon class="size-4" />
+                            {tag.name}
+                        </span>
+                    </li>
+                ))
+            }
+        </ul>
+        <p class="text-gray-700 dark:text-gray-200 text-pretty">{description}</p>
+        <footer class="flex items-end justify-start mt-4 gap-x-4">
+            {github && (
+                <IconLink href={github} label="GitHub" icon={GitHub} />
+            )}
+            {link && (
+              <IconLink href={link} label="Preview" icon={Bullseye} />
+            )}
+          </footer>
+    </div>
+</article>

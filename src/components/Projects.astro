@@ -1,33 +1,86 @@
 ---
+import Flutter from "../components/icons/Flutter.astro";
+import Dart from "../components/icons/Dart.astro";
+import Firebase from "../components/icons/Firebase.astro";
+import HTML from "../components/icons/HTML.astro";
+import CSS from "../components/icons/CSS.astro";
+import JavaScript from "../components/icons/JavaScript.astro";
+import Python from "../components/icons/Python.astro";
+import Django from "../components/icons/Django.astro";
+import MySQL from "../components/icons/MySQL.astro";
+
+import Project from "./Project.astro";
+
+const TAGS = {
+    FLUTTER: {
+        name: "Flutter",
+        classList: "bg-blue-500 text-white",
+        icon: Flutter,
+    },
+    DART: {
+        name: "Dart",
+        classList: "bg-blue-500 text-white",
+        icon: Dart,
+    },
+    FIREBASE: {
+        name: "Firebase",
+        classList: "bg-yellow-800 text-white",
+        icon: Firebase,
+    },
+    HTML: {
+        name: "HTML",
+        classList: "bg-red-500 text-white",
+        icon: HTML
+    },
+    CSS: {
+        name: "CSS",
+        classList: "bg-blue-500 text-white",
+        icon: CSS
+    },
+    JAVASCRIPT: {
+        name: "JavaScript",
+        classList: "bg-yellow-800 text-white",
+        icon: JavaScript
+    },
+    PYTHON: {
+        name: "Python",
+        classList: "bg-blue-500 text-white",
+        icon: Python
+    },
+    DJANGO: {
+        name: "Django",
+        classList: "bg-green-800 text-white",
+        icon: Django
+    },
+    MYSQL: {
+        name: "MySQL",
+        classList: "bg-blue-400 text-white ",
+        icon: MySQL
+    }
+}
+
 const PROJECTS = [
     {
         title: "StudyBuddy",
         description:
             "Aplicación móvil para ayudar a estudiantes en el aprendizaje de un nuevo idioma.",
         image: "https://via.placeholder.com/150",
-        tags: ["Flutter", "Dart", "Firebase"],
+        tags: [TAGS.FLUTTER, TAGS.DART, TAGS.FIREBASE],
     },
     {
         title: "Evaluación Docente",
         description:
             "Página web para la evaluación de docentes mediante el uso de encuestas a estudiantes.",
         image: "https://via.placeholder.com/150",
-        tags: ["HTML", "CSS", "JavaScript", "Python", "Django"],
+        tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.PYTHON, TAGS.DJANGO, TAGS.MYSQL],
     },
 ];
 ---
 
-{
-    PROJECTS.map((project) => (
-        <article>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <ul>
-                {project.tags.map((tag) => (
-                    <li>{tag}</li>
-                ))}
-            </ul>
-            <img src={project.image} alt={project.title} />
-        </article>
-    ))
-}
+<div class="mx-10">
+    {
+        PROJECTS.map((project) => (
+            <Project project={project} />
+        ))
+    }
+</div>

@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import SectionContainer from "../components/SectionContainer.astro";
 import IconLink from "../components/IconLink.astro";
 import Projects from "../components/Projects.astro";
+import TitleSection from "../components/TitleSection.astro";
 
 // Icons
 import LinkedIn from "../components/icons/LinkedIn.astro";
@@ -16,9 +17,9 @@ import Code from "../components/icons/Code.astro";
 	description="Conoce a Samuel Vargas, desarrollador y programador en Flutter ubicado en Bogotá, Colombia. Conoce más sobre su experiencia y proyectos."
 >
 	<main class="px-4 flex flex-col items-center">
-		<section class="mx-auto py-44 pb-20">
+		<SectionContainer class="mx-auto py-44 pb-20">
 			<h1
-				class="text-2xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-4"
+				class="text-2xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-4 mx-auto"
 			>
 				<img
 					class="size-12 rounded-full"
@@ -57,15 +58,30 @@ import Code from "../components/icons/Code.astro";
 					label="sjvc0595@gmail.com"
 				/>
 			</nav>
-		</section>
+		</SectionContainer>
 
 		<!-- Projects -->
-		<section id="projects" class="py-20">
-			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+		<SectionContainer id="projects" class="py-20">
+			<TitleSection>
 				<Code />
 				Proyectos
-			</h2>
-			<Projects />
-		</section>
+			</TitleSection>
+			<Projects class="mx-10" />
+		</SectionContainer>
+
+		<!-- About me -->
+		<SectionContainer id="about" class="py-20">
+			<TitleSection>
+				<Code />
+				Sobre mí
+			</TitleSection>
+			<div class="mx-10">
+				<p class="text-pretty">
+					Desarrollador en Flutter con 1 año de experiencia. De Bogotá,
+					Colombia. En busca de alcanzar siempre nuevos horizontes.
+				</p>
+			</div>
+			
+		</SectionContainer>
 	</main>
 </Layout>

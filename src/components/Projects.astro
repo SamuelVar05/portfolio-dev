@@ -75,9 +75,12 @@ const PROJECTS = [
         tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.PYTHON, TAGS.DJANGO, TAGS.MYSQL],
     },
 ];
+
+// Get the className and id from the Astro props
+const { class: className, id } = Astro.props;
 ---
 
-<div class="mx-10">
+<div class=`${className}` id={id}>
     {
         PROJECTS.map((project) => (
             <Project project={project} />

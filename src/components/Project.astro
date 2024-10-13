@@ -27,7 +27,7 @@ const { title, description, image, tags, github, link } = Astro.props.project as
     <img class="m-5" src={image} alt={title} />
     <div>
         <h3 class="text-xl font-semibold">{title}</h3>
-        <ul class="flex flex-row gap-x-2 my-5">
+        <ul class="flex flex-wrap flex-row gap-2 my-5">
             {
                 tags.map((tag) => (
                     <li>

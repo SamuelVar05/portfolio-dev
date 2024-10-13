@@ -8,6 +8,8 @@ import JavaScript from "../components/icons/JavaScript.astro";
 import Python from "../components/icons/Python.astro";
 import Django from "../components/icons/Django.astro";
 import MySQL from "../components/icons/MySQL.astro";
+import Arduino from "../components/icons/Arduino.astro";
+import Cpp from "../components/icons/Cpp.astro";
 
 import Project from "./Project.astro";
 
@@ -30,34 +32,45 @@ const TAGS = {
     HTML: {
         name: "HTML",
         classList: "bg-red-500 text-white",
-        icon: HTML
+        icon: HTML,
     },
     CSS: {
         name: "CSS",
         classList: "bg-blue-500 text-white",
-        icon: CSS
+        icon: CSS,
     },
     JAVASCRIPT: {
         name: "JavaScript",
         classList: "bg-yellow-800 text-white",
-        icon: JavaScript
+        icon: JavaScript,
     },
     PYTHON: {
         name: "Python",
         classList: "bg-blue-500 text-white",
-        icon: Python
+        icon: Python,
     },
     DJANGO: {
         name: "Django",
         classList: "bg-green-800 text-white",
-        icon: Django
+        icon: Django,
     },
     MYSQL: {
         name: "MySQL",
         classList: "bg-blue-400 text-white ",
-        icon: MySQL
-    }
-}
+        icon: MySQL,
+    },
+    ARDUINO: {
+        name: "Arduino",
+        classList: "bg-blue-400 text-white",
+        icon: Arduino,
+    },
+    CPP: {
+        name: "C++",
+        classList: "bg-blue-500 text-white",
+        icon: Cpp,
+    },
+
+};
 
 const PROJECTS = [
     {
@@ -72,7 +85,21 @@ const PROJECTS = [
         description:
             "Página web para la evaluación de docentes mediante el uso de encuestas a estudiantes.",
         image: "https://via.placeholder.com/150",
-        tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.PYTHON, TAGS.DJANGO, TAGS.MYSQL],
+        tags: [
+            TAGS.HTML,
+            TAGS.CSS,
+            TAGS.JAVASCRIPT,
+            TAGS.PYTHON,
+            TAGS.DJANGO,
+            TAGS.MYSQL,
+        ],
+    },
+    {
+        title: "Color Picker",
+        description:
+            "Aplicación móvil que se comunica con un Arduino UNO mediante comunicación serial para cambiar el color de un LED RGB.",
+        image: "https://via.placeholder.com/150",
+        tags: [TAGS.FLUTTER, TAGS.DART, TAGS.ARDUINO, TAGS.CPP],
     },
 ];
 
@@ -81,9 +108,5 @@ const { class: className, id } = Astro.props;
 ---
 
 <div class=`${className}` id={id}>
-    {
-        PROJECTS.map((project) => (
-            <Project project={project} />
-        ))
-    }
+    {PROJECTS.map((project) => <Project project={project} />)}
 </div>

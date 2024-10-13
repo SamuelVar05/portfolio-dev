@@ -75,18 +75,39 @@ import Code from "../components/icons/Code.astro";
 				<Code />
 				Sobre mí
 			</TitleSection>
-			<section class="mx-10 flex flex-row gap-10">
-				<p class="text-pretty">
-					Desarrollador en Flutter con 1 año de experiencia. De
-					Bogotá, Colombia. En busca de alcanzar siempre nuevos
-					horizontes.
-				</p>
+			<article
+				class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"
+			>
+				<div
+					class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
+				>
+					<p>
+						¡Hola! Soy Samuel Vargas, desarrollador Flutter con 1
+						año de experiencia creando aplicaciones móviles
+						multiplataforma. Me apasiona combinar funcionalidad y
+						diseño para construir aplicaciones que ofrezcan
+						experiencias de usuario intuitivas y eficientes. He
+						trabajado principalmente con Flutter y Provider,
+						integrando APIs y asegurando un manejo óptimo del estado
+						en mis proyectos.
+					</p>
+
+					<p>
+						En mi tiempo libre, disfruto del fútbol y me apasiona el
+						aprendizaje de idiomas, lo cual también me ayuda en mi
+						carrera como desarrollador y en la comunicación en
+						distintos contextos.
+					</p>
+
+					<p></p>
+				</div>
+
 				<img
-					class="size-200"
+					class="size-200 order-1 md:order-2"
 					src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
 					alt="Samuel Vargas"
 				/>
-			</section>
+			</article>
 		</SectionContainer>
 	</main>
 </Layout>

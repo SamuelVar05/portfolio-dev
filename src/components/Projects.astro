@@ -98,7 +98,7 @@ const PROJECTS = [
         title: "Color Picker",
         description:
             "Aplicación móvil que se comunica con un Arduino UNO mediante comunicación serial para cambiar el color de un LED RGB.",
-        image: "https://via.placeholder.com/150",
+        image: "/projects/color-picker.webp",
         tags: [TAGS.FLUTTER, TAGS.DART, TAGS.ARDUINO, TAGS.CPP],
     },
 ];
@@ -107,6 +107,6 @@ const PROJECTS = [
 const { class: className, id } = Astro.props;
 ---
 
-<div class=`${className}` id={id}>
+<div class=`${className} flex flex-col gap-y-16` id={id}>
     {PROJECTS.map((project) => <Project project={project} />)}
 </div>

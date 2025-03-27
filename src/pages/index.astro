@@ -4,12 +4,14 @@ import SectionContainer from "../components/SectionContainer.astro";
 import IconLink from "../components/IconLink.astro";
 import Projects from "../components/Projects.astro";
 import TitleSection from "../components/TitleSection.astro";
+import Experiencia from "../components/Experiencia.astro";
 
 // Icons
 import LinkedIn from "../components/icons/LinkedIn.astro";
 import GitHub from "../components/icons/GitHub.astro";
 import Mail from "../components/icons/Mail.astro";
 import Code from "../components/icons/Code.astro";
+import Briefcase from "../components/icons/Briefcase.astro";
 ---
 
 <Layout
@@ -59,6 +61,15 @@ import Code from "../components/icons/Code.astro";
 				/>
 			</nav>
 		</SectionContainer>
+
+		<!-- Experiencia -->
+		 <SectionContainer>
+			<TitleSection>
+				<Briefcase></Briefcase>
+				Experiencia
+			</TitleSection>
+			<Experiencia/>
+		 </SectionContainer>
 
 		<!-- Projects -->
 		<SectionContainer id="projects" class="py-20">

@@ -1,0 +1,23 @@
+---
+import ExperienciaItem from "../components/ExperienciaItem.astro";
+
+const EXPERIENCIA = [
+    {
+        date: "Octubre 2024 - Marzo 2025",
+        title: "Tutor de programación",
+        company: "Tutorías con ingenio",
+        description: "Como tutor de programación en la Universidad Nacional de Colombia, he apoyado a estudiantes en el desarrollo de habilidades computacionales, aplicando estrategias de aprendizaje cooperativo para fomentar la resolución conjunta de problemas. Además, he promovido el trabajo autónomo, guiando a los estudiantes en la construcción de su propio conocimiento y fortaleciendo su capacidad para abordar desafíos de manera independiente.",
+    }
+]
+---
+
+<ol class="relative mt-16">
+    {
+        EXPERIENCIA.map((experience) => (
+        <li class="">
+            <ExperienciaItem {...experience} />
+        </li>
+        ))
+    }
+</ol>
+  

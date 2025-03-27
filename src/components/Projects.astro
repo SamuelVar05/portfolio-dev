@@ -61,7 +61,7 @@ const TAGS = {
     },
     ARDUINO: {
         name: "Arduino",
-        classList: "bg-blue-400 text-white",
+        classList: "bg-blue-300 text-white",
         icon: Arduino,
     },
     CPP: {
@@ -73,11 +73,20 @@ const TAGS = {
 
 const PROJECTS = [
     {
+        title: "UNChaza",
+        description:
+        "UNChaza es una aplicación móvil desarrollada con Flutter para conectar a estudiantes con los negocios informales dentro de la universidad. Facilita la búsqueda de productos y emprendimientos a través de una interfaz intuitiva y un sistema de consulta eficiente. La app integra autenticación con JWT tokens y permite la búsqueda de productos por nombre, optimizando la experiencia del usuario y promoviendo el crecimiento de los negocios estudiantiles.",
+        image: "/projects/unchaza.webp",
+        tags: [TAGS.FLUTTER, TAGS.DART],
+        github: "https://github.com/SamuelVar05/Proyecto_IngeSoft",
+    },
+    {
         title: "StudyBuddy",
         description:
         "StudyBuddy es una aplicación móvil desarrollada con Flutter y Firebase para facilitar la organización y colaboración entre estudiantes. Implementa autenticación segura y almacenamiento en la nube, permitiendo gestionar grupos de estudio y compartir materiales de forma eficiente.",
         image: "/projects/study-buddy.webp",
         tags: [TAGS.FLUTTER, TAGS.DART, TAGS.FIREBASE],
+        github: "https://github.com/SamuelVar05/StudyBuddy"
     },
     {
         title: "Evaluación Docente",
@@ -92,6 +101,7 @@ const PROJECTS = [
             TAGS.DJANGO,
             TAGS.MYSQL,
         ],
+        github: "https://github.com/SamuelVar05/ProyectoBases"
     },
     {
         title: "Color Picker - A Flutter App with Arduino",

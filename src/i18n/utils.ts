@@ -16,3 +16,4 @@ export function setLanguage(lang: Language): void {
 		document.documentElement.lang = lang;
 	}
 }
+

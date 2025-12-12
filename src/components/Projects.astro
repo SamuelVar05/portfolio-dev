@@ -97,30 +97,34 @@ const t = translations[lang];
 
 const PROJECTS = [
     {
-        title: t.projects.items[4].title,
-        description: t.projects.items[4].description,
+        key: "runpath",
+        title: t.projects.items.runpath.title,
+        description: t.projects.items.runpath.description,
         image: "/projects/runpath.webp",
         tags: [TAGS.DOCKER, TAGS.KUBERNETES, TAGS.GCP, TAGS.PYTHON],
         link: "#",
         caseStudy: true,
     },
     {
-        title: t.projects.items[0].title,
-        description: t.projects.items[0].description,
+        key: "unchaza",
+        title: t.projects.items.unchaza.title,
+        description: t.projects.items.unchaza.description,
         image: "/projects/unchaza.webp",
         tags: [TAGS.FLUTTER, TAGS.DART],
         github: "https://github.com/SamuelVar05/Proyecto_IngeSoft",
     },
     {
-        title: t.projects.items[1].title,
-        description: t.projects.items[1].description,
+        key: "studybuddy",
+        title: t.projects.items.studybuddy.title,
+        description: t.projects.items.studybuddy.description,
         image: "/projects/study-buddy.webp",
         tags: [TAGS.FLUTTER, TAGS.DART, TAGS.FIREBASE],
-        github: "https://github.com/SamuelVar05/StudyBuddy"
+        github: "https://github.com/SamuelVar05/StudyBuddy",
     },
     {
-        title: t.projects.items[2].title,
-        description: t.projects.items[2].description,
+        key: "evaluacion",
+        title: t.projects.items.title,
+        description: t.projects.items.evaluacion.description,
         image: "/projects/evaluacion-docente.webp",
         tags: [
             TAGS.HTML,
@@ -130,16 +134,18 @@ const PROJECTS = [
             TAGS.DJANGO,
             TAGS.MYSQL,
         ],
-        github: "https://github.com/SamuelVar05/ProyectoBases"
+        github: "https://github.com/SamuelVar05/ProyectoBases",
     },
     {
-        title: t.projects.items[3].title,
-        description: t.projects.items[3].description,
+        key: "colorpicker",
+        title: t.projects.items.colorpicker.title,
+        description: t.projects.items.colorpicker.description,
         image: "/projects/color-picker.webp",
         tags: [TAGS.FLUTTER, TAGS.DART, TAGS.ARDUINO, TAGS.CPP],
         github: "https://github.com/SamuelVar05/color_picker",
     },
 ];
+
 
 // Get the className and id from the Astro props
 const { class: className, id } = Astro.props;
@@ -147,46 +153,47 @@ const { class: className, id } = Astro.props;
 
 <div class=`${className} flex flex-col gap-y-16 md:gap-y-20` id={id}>
     {PROJECTS.map((project, index) => (
-        <div class={`project-item-${index}`}>
+        <div class={`project-item`} data-project-key={project.key}>
             <Project project={project} />
         </div>
+
     ))}
 </div>
 <script>
-	import { translations } from "../i18n/translations";
-	
-	function getLanguage() {
-		if (typeof window === "undefined") return "en";
-		const stored = localStorage.getItem("language");
-		return stored === "en" || stored === "es" ? stored : "en";
-	}
-	
-	function updateProjectTranslations() {
-		const lang = getLanguage();
-		const t = translations[lang as keyof typeof translations];
-		
-		for (let index = 0; index < 5; index++) {
-			const container = document.querySelector(`.project-item-${index}`);
-			if (!container) continue;
-			
-			const article = container.querySelector("article");
-			const project = t.projects.items[index];
-			
-			if (article && project) {
-				const title = article.querySelector("[data-i18n-project-title]");
-				const description = article.querySelector("[data-i18n-project-description]");
-				const featured = article.querySelector("[data-i18n-project-featured]");
-				const caseStudyBtn = article.querySelector("span[data-i18n-case-study]");
-				
-				if (title) title.textContent = project.title;
-				if (description) description.textContent = project.description;
-				if (featured) featured.textContent = t.projects.featured;
-				if (caseStudyBtn) caseStudyBtn.textContent = t.projects.caseStudy;
-			}
-		}
-	}
-	
-	document.addEventListener("DOMContentLoaded", updateProjectTranslations);
-	document.addEventListener("astro:page-load", updateProjectTranslations);
-	document.addEventListener("languagechange", updateProjectTranslations);
+    import { translations } from "../i18n/translations";
+
+    function getLanguage() {
+        if (typeof window === "undefined") return "en";
+        const stored = localStorage.getItem("language");
+        return stored === "en" || stored === "es" ? stored : "en";
+    }
+
+    function updateProjectTranslations() {
+        const lang = getLanguage();
+        const t = translations[lang];
+
+        document.querySelectorAll(".project-item").forEach(container => {
+            const key = (container as HTMLElement).dataset.projectKey;
+            const article = container.querySelector("article");
+
+            if (!key || !article) return;
+
+            const project = t.projects.items[key];
+            if (!project) return;
+
+            const title = article.querySelector("[data-i18n-project-title]");
+            const description = article.querySelector("[data-i18n-project-description]");
+            const featured = article.querySelector("[data-i18n-project-featured]");
+            const caseStudyBtn = article.querySelector("span[data-i18n-case-study]");
+
+            if (title) title.textContent = project.title;
+            if (description) description.textContent = project.description;
+            if (featured) featured.textContent = t.projects.featured;
+            if (caseStudyBtn) caseStudyBtn.textContent = t.projects.caseStudy;
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", updateProjectTranslations);
+    document.addEventListener("astro:page-load", updateProjectTranslations);
+    document.addEventListener("languagechange", updateProjectTranslations);
 </script>

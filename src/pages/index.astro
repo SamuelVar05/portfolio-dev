@@ -19,6 +19,13 @@ import Briefcase from "../components/icons/Briefcase.astro";
 // Use default language for SSR (English)
 const lang: Language = DEFAULT_LANGUAGE;
 const t = translations[lang];
+
+const projectCount = Object.keys(t.projects.items).length;
+const deliveriesValue =
+    lang === "es"
+        ? `${projectCount} proyectos públicos`
+        : `${projectCount} public projects`;
+
 ---
 
 <Layout
@@ -73,7 +80,7 @@ const t = translations[lang];
 						<div class="grid w-full gap-4 sm:grid-cols-3">
 							<div class="rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
 								<p class="text-xs text-gray-500 dark:text-gray-400" data-i18n="hero.stats.deliveries">{t.hero.stats.deliveries}</p>
-								<p class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="hero.stats.deliveriesValue">{t.hero.stats.deliveriesValue}</p>
+								<p class="text-lg font-semibold text-gray-900 dark:text-white">{deliveriesValue}</p>
 							</div>
 							<div class="rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
 								<p class="text-xs text-gray-500 dark:text-gray-400" data-i18n="hero.stats.stack">{t.hero.stats.stack}</p>

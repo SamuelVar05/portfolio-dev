@@ -1,0 +1,52 @@
+---
+import { translations, type Language } from "../i18n/translations";
+import { DEFAULT_LANGUAGE } from "../i18n/utils";
+
+const lang: Language = DEFAULT_LANGUAGE;
+const t = translations[lang];
+const LANGUAGES = t.languages.items;
+---
+
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+	{LANGUAGES.map((language, index) => (
+		<div class={`language-item-${index} rounded-2xl border border-white/40 bg-white/80 px-4 py-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5`}>
+			<div class="flex items-center justify-between">
+				<span class="font-semibold text-gray-900 dark:text-white" data-i18n-language-name>{language.name}</span>
+				<span class="text-sm text-gray-600 dark:text-gray-400 font-medium" data-i18n-language-level>{language.level}</span>
+			</div>
+		</div>
+	))}
+</div>
+
+<script>
+	import { translations } from "../i18n/translations";
+	
+	function getLanguage() {
+		if (typeof window === "undefined") return "en";
+		const stored = localStorage.getItem("language");
+		return stored === "en" || stored === "es" ? stored : "en";
+	}
+	
+	function updateLanguagesTranslations() {
+		const lang = getLanguage();
+		const t = translations[lang as keyof typeof translations];
+		
+		for (let index = 0; index < t.languages.items.length; index++) {
+			const container = document.querySelector(`.language-item-${index}`);
+			if (!container) continue;
+			
+			const language = t.languages.items[index];
+			if (language) {
+				const name = container.querySelector("[data-i18n-language-name]");
+				const level = container.querySelector("[data-i18n-language-level]");
+				
+				if (name) name.textContent = language.name;
+				if (level) level.textContent = language.level;
+			}
+		}
+	}
+	
+	document.addEventListener("DOMContentLoaded", updateLanguagesTranslations);
+	document.addEventListener("astro:page-load", updateLanguagesTranslations);
+	document.addEventListener("languagechange", updateLanguagesTranslations);
+</script>

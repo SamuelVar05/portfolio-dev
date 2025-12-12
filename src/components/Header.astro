@@ -1,10 +1,15 @@
 ---
 import ToggleThemeButton from "./ThemeToggle.astro";
+import LanguageToggle from "./LanguageToggle.astro";
+import { translations } from "../i18n/translations";
+import { getLanguage } from "../i18n/utils";
 
+const lang = getLanguage();
+const t = translations[lang];
 const navItems = [
-    { name: "Inicio", href: "#top", label: "home" },
-    { name: "Proyectos", href: "#projects", label: "projects" },
-    { name: "Acerca de mí", href: "#about", label: "about" },
+    { name: t.nav.home, href: "#top", label: "home" },
+    { name: t.nav.projects, href: "#projects", label: "projects" },
+    { name: t.nav.about, href: "#about", label: "about" },
 ];
 ---
 
@@ -17,7 +22,12 @@ const navItems = [
         <!-- The label is used to highlight the current page -->
         <!-- The href is used to navigate to the page -->
         <!-- The name is used to display the name of the page -->
-        {navItems.map((item) => <a href={item.href}>{item.name}</a>)}
+        {navItems.map((item, index) => (
+            <a href={item.href} data-i18n-nav={index === 0 ? "home" : index === 1 ? "projects" : "about"}>
+                {item.name}
+            </a>
+        ))}
+        <LanguageToggle />
         <ToggleThemeButton />
     </nav>
 </header>
@@ -64,6 +74,52 @@ const navItems = [
             }
         };
     });
+</script>
+<script is:inline>
+    // Update navigation translations
+    (function() {
+        const translations = {
+            en: {
+                nav: {
+                    home: "Home",
+                    projects: "Projects",
+                    about: "About me"
+                }
+            },
+            es: {
+                nav: {
+                    home: "Inicio",
+                    projects: "Proyectos",
+                    about: "Acerca de mí"
+                }
+            }
+        };
+        
+        function getLanguage() {
+            const stored = localStorage.getItem("language");
+            return stored === "en" || stored === "es" ? stored : "en";
+        }
+        
+        function updateNavTranslations() {
+            const lang = getLanguage();
+            const t = translations[lang];
+            
+            document.querySelectorAll("[data-i18n-nav]").forEach((link) => {
+                const key = link.getAttribute("data-i18n-nav");
+                if (key === "home") {
+                    link.textContent = t.nav.home;
+                } else if (key === "projects") {
+                    link.textContent = t.nav.projects;
+                } else if (key === "about") {
+                    link.textContent = t.nav.about;
+                }
+            });
+        }
+        
+        document.addEventListener("DOMContentLoaded", updateNavTranslations);
+        document.addEventListener("astro:page-load", updateNavTranslations);
+        document.addEventListener("languagechange", updateNavTranslations);
+    })();
 </script>
 
 <style>

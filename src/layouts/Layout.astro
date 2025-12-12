@@ -13,7 +13,7 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en" id="html-root">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -108,5 +108,14 @@ const { title, description } = Astro.props;
 				}
 			}
 		</style>
+		<script is:inline>
+			// Set initial language from localStorage or default to English
+			(function() {
+				const DEFAULT_LANGUAGE = "en";
+				const stored = localStorage.getItem("language");
+				const lang = stored === "en" || stored === "es" ? stored : DEFAULT_LANGUAGE;
+				document.documentElement.lang = lang;
+			})();
+		</script>
 	</body>
 </html>

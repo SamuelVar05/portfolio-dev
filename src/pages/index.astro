@@ -5,6 +5,9 @@ import IconLink from "../components/IconLink.astro";
 import Projects from "../components/Projects.astro";
 import TitleSection from "../components/TitleSection.astro";
 import Experiencia from "../components/Experiencia.astro";
+import Languages from "../components/Languages.astro";
+import { translations, type Language } from "../i18n/translations";
+import { DEFAULT_LANGUAGE } from "../i18n/utils";
 
 // Icons
 import LinkedIn from "../components/icons/LinkedIn.astro";
@@ -12,70 +15,124 @@ import GitHub from "../components/icons/GitHub.astro";
 import Mail from "../components/icons/Mail.astro";
 import Code from "../components/icons/Code.astro";
 import Briefcase from "../components/icons/Briefcase.astro";
+
+// Use default language for SSR (English)
+const lang: Language = DEFAULT_LANGUAGE;
+const t = translations[lang];
 ---
 
 <Layout
-	title="Portafolio de Samuel Vargas. Desarrollador y Programador en Flutter"
-	description="Conoce a Samuel Vargas, desarrollador y programador en Flutter ubicado en Bogotá, Colombia. Conoce más sobre su experiencia y proyectos."
+	title={t.meta.title}
+	description={t.meta.description}
 >
 	<main class="px-4 flex flex-col items-center">
-		<SectionContainer class="mx-auto py-44 pb-20">
-			<h1
-				class="text-2xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-4 mx-auto"
-			>
-				<img
-					class="size-12 rounded-full"
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
-					alt="Samuel Vargas"
-				/>
-				Hola, soy Samuel Vargas
-			</h1>
-			<h2
-				class="opacity-80 text-2xl lg:text-3xl max-w-[700px] text-pretty"
-			>
-				Desarrollador en Flutter con 1 año de experiencia. De Bogotá,
-				Colombia. En busca de alcanzar siempre nuevos horizontes.
-			</h2>
+		<SectionContainer class="mx-auto pt-32 pb-20">
+			<div class="relative overflow-hidden rounded-[32px] border border-white/40 bg-white/80 shadow-[0_25px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur-xl dark:border-white/5 dark:bg-neutral-900/70">
+				<div class="pointer-events-none absolute inset-0 opacity-60">
+					<div class="absolute -left-10 top-10 h-40 w-40 rounded-full bg-gradient-to-r from-violet-500/50 via-fuchsia-500/40 to-sky-400/40 blur-3xl"></div>
+					<div class="absolute -right-10 bottom-0 h-52 w-52 rounded-full bg-gradient-to-tr from-sky-400/40 via-emerald-400/30 to-indigo-500/40 blur-3xl"></div>
+				</div>
 
-			<!-- Contact info -->
-			<nav class="flex gap-4 flex-row py-6 flex-wrap">
-				<!-- GitHub -->
-				<IconLink
-					href="https://github.com/SamuelVar05"
-					icon={GitHub}
-					label="GitHub"
-				/>
+				<div class="relative grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-[1.2fr_0.9fr]">
+					<div class="flex flex-col gap-6">
+						<div class="flex flex-wrap gap-3">
+							<span class="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.08em] text-gray-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white" data-i18n="hero.available">
+								<Briefcase class="size-4" />
+								{t.hero.available}
+							</span>
+							<span class="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white" data-i18n="hero.location">
+								{t.hero.location}
+							</span>
+							<span class="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white" data-i18n="hero.experience">
+								{t.hero.experience}
+							</span>
+						</div>
 
-				<!-- Linkedin -->
-				<IconLink
-					href="https://www.linkedin.com/in/SamuelVar05"
-					icon={LinkedIn}
-					label="LinkedIn"
-				/>
+						<div class="space-y-4">
+							<p class="text-sm font-semibold uppercase tracking-[0.15em] text-sky-600 dark:text-sky-300" data-i18n="hero.role">
+								{t.hero.role}
+							</p>
+							<h1 class="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl dark:text-white" data-i18n="hero.name">
+								{t.hero.name}
+							</h1>
+							<p class="text-lg text-gray-700/90 dark:text-gray-200/90" data-i18n="hero.description">
+								{t.hero.description}
+							</p>
+						</div>
 
-				<!-- Mail -->
-				<IconLink
-					href="mailto:sjvc0595@gmail.com"
-					icon={Mail}
-					label="sjvc0595@gmail.com"
-				/>
-			</nav>
+						<div class="flex flex-wrap gap-3">
+							<a
+								href="#projects"
+								class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-500 via-blue-500 to-sky-400 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-500/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+								data-i18n="hero.ctaProjects"
+							>
+								{t.hero.ctaProjects}
+							</a>
+						</div>
+
+						<div class="grid w-full gap-4 sm:grid-cols-3">
+							<div class="rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+								<p class="text-xs text-gray-500 dark:text-gray-400" data-i18n="hero.stats.deliveries">{t.hero.stats.deliveries}</p>
+								<p class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="hero.stats.deliveriesValue">{t.hero.stats.deliveriesValue}</p>
+							</div>
+							<div class="rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+								<p class="text-xs text-gray-500 dark:text-gray-400" data-i18n="hero.stats.stack">{t.hero.stats.stack}</p>
+								<p class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="hero.stats.stackValue">{t.hero.stats.stackValue}</p>
+							</div>
+							<div class="rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+								<p class="text-xs text-gray-500 dark:text-gray-400" data-i18n="hero.stats.focus">{t.hero.stats.focus}</p>
+								<p class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="hero.stats.focusValue">{t.hero.stats.focusValue}</p>
+							</div>
+						</div>
+
+						<nav class="flex gap-3 flex-row pt-2 flex-wrap">
+							<IconLink
+								href="https://github.com/SamuelVar05"
+								icon={GitHub}
+								label="GitHub"
+							/>
+							<IconLink
+								href="https://www.linkedin.com/in/SamuelVar05"
+								icon={LinkedIn}
+								label="LinkedIn"
+							/>
+							<IconLink
+								href="mailto:sjvc0595@gmail.com"
+								icon={Mail}
+								label={t.hero.contact.writeMe}
+							/>
+						</nav>
+					</div>
+
+					<div class="relative">
+						<div class="absolute -left-6 -right-6 top-8 h-64 rounded-full bg-gradient-to-br from-violet-500/30 via-sky-400/30 to-emerald-400/20 blur-3xl"></div>
+						<div class="relative mx-auto w-full max-w-[420px] overflow-hidden rounded-3xl border border-white/50 shadow-2xl shadow-sky-500/15 ring-1 ring-white/70 backdrop-blur-lg dark:border-white/10 dark:ring-white/5">
+							<img
+								class="h-full w-full object-cover object-top"
+								src="/portfolio.webp"
+								alt="Retrato de Samuel Vargas"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
 		</SectionContainer>
 
 		<!-- Experiencia -->
-		 <SectionContainer>
+		<SectionContainer class="py-12">
 			<TitleSection>
 				<Briefcase></Briefcase>
-				Experiencia
+				<span data-i18n="experience.title">{t.experience.title}</span>
 			</TitleSection>
 			<Experiencia/>
-		 </SectionContainer>
+		</SectionContainer>
 
 		<!-- Projects -->
 		<SectionContainer id="projects" class="py-20">
 			<TitleSection>
 				<Code />
-				Proyectos
+				<span data-i18n="projects.title">{t.projects.title}</span>
 			</TitleSection>
 			<Projects class="mx-10" />
 		</SectionContainer>
@@ -84,41 +141,93 @@ import Briefcase from "../components/icons/Briefcase.astro";
 		<SectionContainer id="about" class="py-20">
 			<TitleSection>
 				<Code />
-				Sobre mí
+				<span data-i18n="about.title">{t.about.title}</span>
 			</TitleSection>
-			<article
-				class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"
-			>
-				<div
-					class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-				>
-					<p>
-						¡Hola! Soy Samuel Vargas, desarrollador Flutter con 1
-						año de experiencia creando aplicaciones móviles
-						multiplataforma. Me apasiona combinar funcionalidad y
-						diseño para construir aplicaciones que ofrezcan
-						experiencias de usuario intuitivas y eficientes. He
-						trabajado principalmente con Flutter y Provider,
-						integrando APIs y asegurando un manejo óptimo del estado
-						en mis proyectos.
+			<article class="grid items-center gap-10 rounded-[28px] border border-white/40 bg-white/75 p-6 shadow-lg shadow-sky-500/10 backdrop-blur-lg dark:border-white/10 dark:bg-white/5 md:grid-cols-[1.05fr_0.95fr]">
+				<div class="order-2 space-y-4 text-gray-700 dark:text-gray-200 md:order-1">
+					<p class="text-lg leading-relaxed" data-i18n="about.description">
+						{t.about.description}
 					</p>
-
-					<p>
-						En mi tiempo libre, disfruto del fútbol y me apasiona el
-						aprendizaje de idiomas, lo cual también me ayuda en mi
-						carrera como desarrollador y en la comunicación en
-						distintos contextos.
+					<div class="grid gap-3 sm:grid-cols-2">
+						<div class="rounded-2xl border border-white/40 bg-white/80 px-4 py-3 text-sm shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+							<p class="text-xs uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400" data-i18n="about.priorities.label">{t.about.priorities.label}</p>
+							<p class="font-semibold text-gray-900 dark:text-white" data-i18n="about.priorities.value">{t.about.priorities.value}</p>
+						</div>
+						<div class="rounded-2xl border border-white/40 bg-white/80 px-4 py-3 text-sm shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+							<p class="text-xs uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400" data-i18n="about.work.label">{t.about.work.label}</p>
+							<p class="font-semibold text-gray-900 dark:text-white" data-i18n="about.work.value">{t.about.work.value}</p>
+						</div>
+					</div>
+					<p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="about.hobbies">
+						{t.about.hobbies}
 					</p>
-
-					<p></p>
 				</div>
 
-				<img
-					class="size-200 order-1 md:order-2"
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
-					alt="Samuel Vargas"
-				/>
+				<div class="relative order-1 overflow-hidden rounded-3xl border border-white/50 shadow-2xl shadow-sky-500/15 ring-1 ring-white/70 backdrop-blur-lg dark:border-white/10 dark:ring-white/5 md:order-2">
+					<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25"></div>
+					<img
+						class="h-full w-full object-cover object-top"
+						src="/portfolio.webp"
+						alt="Samuel Vargas"
+						loading="lazy"
+					/>
+				</div>
 			</article>
 		</SectionContainer>
+
+		<!-- Languages -->
+		<SectionContainer id="languages" class="py-20">
+			<TitleSection>
+				<Code />
+				<span data-i18n="languages.title">{t.languages.title}</span>
+			</TitleSection>
+			<Languages />
+		</SectionContainer>
 	</main>
+	<script>
+		import { translations } from "../i18n/translations";
+		
+		const DEFAULT_LANGUAGE = "en";
+		
+		function getLanguage() {
+			if (typeof window === "undefined") return DEFAULT_LANGUAGE;
+			const stored = localStorage.getItem("language");
+			return stored === "en" || stored === "es" ? stored : DEFAULT_LANGUAGE;
+		}
+		
+		function getNestedValue(obj: any, path: string): string {
+			return path.split(".").reduce((current, key) => current?.[key], obj) || "";
+		}
+		
+		function updateTranslations() {
+			const lang = getLanguage();
+			const t = translations[lang as keyof typeof translations];
+			
+			document.querySelectorAll("[data-i18n]").forEach((element) => {
+				const key = element.getAttribute("data-i18n");
+				if (key) {
+					const value = getNestedValue(t, key);
+					if (value) {
+						element.textContent = value;
+					}
+				}
+			});
+			
+			// Update meta tags
+			document.title = t.meta.title;
+			const metaDescription = document.querySelector('meta[name="description"]');
+			if (metaDescription) {
+				metaDescription.setAttribute("content", t.meta.description);
+			}
+		}
+		
+		// Update on page load
+		document.addEventListener("DOMContentLoaded", updateTranslations);
+		document.addEventListener("astro:page-load", updateTranslations);
+		
+		// Listen for language changes
+		document.addEventListener("languagechange", () => {
+			updateTranslations();
+		});
+	</script>
 </Layout>

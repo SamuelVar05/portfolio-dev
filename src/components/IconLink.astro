@@ -1,6 +1,6 @@
 ---
 // Obtain the props
-const { href, icon: Icon, label } = Astro.props;
+const { href, icon: Icon, label, "data-i18n-case-study": hasCaseStudy } = Astro.props;
 ---
 
 <a
@@ -12,5 +12,5 @@ const { href, icon: Icon, label } = Astro.props;
     target="_blank"
 >
     <Icon class="size-6" />
-    <span>{label}</span>
+    <span {...(hasCaseStudy !== undefined ? { "data-i18n-case-study": "" } : {})}>{label}</span>
 </a>

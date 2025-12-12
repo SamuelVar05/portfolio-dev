@@ -10,6 +10,9 @@ import Django from "../components/icons/Django.astro";
 import MySQL from "../components/icons/MySQL.astro";
 import Arduino from "../components/icons/Arduino.astro";
 import Cpp from "../components/icons/Cpp.astro";
+import Docker from "../components/icons/Docker.astro";
+import Kubernetes from "../components/icons/Kubernetes.astro";
+import GCP from "../components/icons/GCP.astro";
 
 import Project from "./Project.astro";
 
@@ -69,29 +72,47 @@ const TAGS = {
         classList: "bg-blue-500 text-white",
         icon: Cpp,
     },
+    DOCKER: {
+        name: "Docker",
+        classList: "bg-blue-600 text-white",
+        icon: Docker,
+    },
+    KUBERNETES: {
+        name: "Kubernetes",
+        classList: "bg-blue-700 text-white",
+        icon: Kubernetes,
+    },
+    GCP: {
+        name: "GCP",
+        classList: "bg-blue-500 text-white",
+        icon: GCP,
+    },
 };
+
+import { translations, type Language } from "../i18n/translations";
+import { DEFAULT_LANGUAGE } from "../i18n/utils";
+
+const lang: Language = DEFAULT_LANGUAGE;
+const t = translations[lang];
 
 const PROJECTS = [
     {
-        title: "UNChaza",
-        description:
-        "UNChaza es una aplicación móvil desarrollada con Flutter para conectar a estudiantes con los negocios informales dentro de la universidad. Facilita la búsqueda de productos y emprendimientos a través de una interfaz intuitiva y un sistema de consulta eficiente. La app integra autenticación con JWT tokens y permite la búsqueda de productos por nombre, optimizando la experiencia del usuario y promoviendo el crecimiento de los negocios estudiantiles.",
+        title: t.projects.items[0].title,
+        description: t.projects.items[0].description,
         image: "/projects/unchaza.webp",
         tags: [TAGS.FLUTTER, TAGS.DART],
         github: "https://github.com/SamuelVar05/Proyecto_IngeSoft",
     },
     {
-        title: "StudyBuddy",
-        description:
-        "StudyBuddy es una aplicación móvil desarrollada con Flutter y Firebase para facilitar la organización y colaboración entre estudiantes. Implementa autenticación segura y almacenamiento en la nube, permitiendo gestionar grupos de estudio y compartir materiales de forma eficiente.",
+        title: t.projects.items[1].title,
+        description: t.projects.items[1].description,
         image: "/projects/study-buddy.webp",
         tags: [TAGS.FLUTTER, TAGS.DART, TAGS.FIREBASE],
         github: "https://github.com/SamuelVar05/StudyBuddy"
     },
     {
-        title: "Evaluación Docente",
-        description:
-            "El Sistema de Evaluación Docente es una plataforma web desarrollada con Django y MySQL para recopilar y gestionar evaluaciones anónimas de profesores. Implementa autenticación de usuarios y garantiza la seguridad y confidencialidad de los datos, facilitando una retroalimentación eficiente y estructurada.",
+        title: t.projects.items[2].title,
+        description: t.projects.items[2].description,
         image: "/projects/evaluacion-docente.webp",
         tags: [
             TAGS.HTML,
@@ -104,12 +125,19 @@ const PROJECTS = [
         github: "https://github.com/SamuelVar05/ProyectoBases"
     },
     {
-        title: "Color Picker - A Flutter App with Arduino",
-        description:
-            "Color Picker es una aplicación móvil que permite controlar un LED RGB conectado a un Arduino UNO mediante una conexión Bluetooth. La app permite seleccionar colores desde el móvil, enviando los valores correspondientes al Arduino, que ajusta el LED en tiempo real. Es ideal para aprender sobre control de hardware con comunicación serial y ofrece una experiencia sencilla y visual para cambiar colores de forma dinámica.",
+        title: t.projects.items[3].title,
+        description: t.projects.items[3].description,
         image: "/projects/color-picker.webp",
         tags: [TAGS.FLUTTER, TAGS.DART, TAGS.ARDUINO, TAGS.CPP],
         github: "https://github.com/SamuelVar05/color_picker",
+    },
+    {
+        title: t.projects.items[4].title,
+        description: t.projects.items[4].description,
+        image: "/projects/runpath.webp",
+        tags: [TAGS.DOCKER, TAGS.KUBERNETES, TAGS.GCP, TAGS.PYTHON],
+        link: "#",
+        caseStudy: true,
     },
 ];
 
@@ -117,6 +145,48 @@ const PROJECTS = [
 const { class: className, id } = Astro.props;
 ---
 
-<div class=`${className} flex flex-col gap-y-16` id={id}>
-    {PROJECTS.map((project) => <Project project={project} />)}
+<div class=`${className} flex flex-col gap-y-16 md:gap-y-20` id={id}>
+    {PROJECTS.map((project, index) => (
+        <div class={`project-item-${index}`}>
+            <Project project={project} />
+        </div>
+    ))}
 </div>
+<script>
+	import { translations } from "../i18n/translations";
+	
+	function getLanguage() {
+		if (typeof window === "undefined") return "en";
+		const stored = localStorage.getItem("language");
+		return stored === "en" || stored === "es" ? stored : "en";
+	}
+	
+	function updateProjectTranslations() {
+		const lang = getLanguage();
+		const t = translations[lang as keyof typeof translations];
+		
+		for (let index = 0; index < 5; index++) {
+			const container = document.querySelector(`.project-item-${index}`);
+			if (!container) continue;
+			
+			const article = container.querySelector("article");
+			const project = t.projects.items[index];
+			
+			if (article && project) {
+				const title = article.querySelector("[data-i18n-project-title]");
+				const description = article.querySelector("[data-i18n-project-description]");
+				const featured = article.querySelector("[data-i18n-project-featured]");
+				const caseStudyBtn = article.querySelector("span[data-i18n-case-study]");
+				
+				if (title) title.textContent = project.title;
+				if (description) description.textContent = project.description;
+				if (featured) featured.textContent = t.projects.featured;
+				if (caseStudyBtn) caseStudyBtn.textContent = t.projects.caseStudy;
+			}
+		}
+	}
+	
+	document.addEventListener("DOMContentLoaded", updateProjectTranslations);
+	document.addEventListener("astro:page-load", updateProjectTranslations);
+	document.addEventListener("languagechange", updateProjectTranslations);
+</script>

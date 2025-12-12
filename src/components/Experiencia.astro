@@ -1,23 +1,61 @@
 ---
 import ExperienciaItem from "../components/ExperienciaItem.astro";
+import { translations, type Language } from "../i18n/translations";
+import { DEFAULT_LANGUAGE } from "../i18n/utils";
 
-const EXPERIENCIA = [
-    {
-        date: "Octubre 2024 - Marzo 2025",
-        title: "Tutor de programación",
-        company: "Tutorías con ingenio",
-        description: "Como tutor de programación en la Universidad Nacional de Colombia, he apoyado a estudiantes en el desarrollo de habilidades computacionales, aplicando estrategias de aprendizaje cooperativo para fomentar la resolución conjunta de problemas. Además, he promovido el trabajo autónomo, guiando a los estudiantes en la construcción de su propio conocimiento y fortaleciendo su capacidad para abordar desafíos de manera independiente.",
-    }
-]
+const lang: Language = DEFAULT_LANGUAGE;
+const t = translations[lang];
+const EXPERIENCIA = t.experience.items;
 ---
 
 <ol class="relative mt-16">
     {
-        EXPERIENCIA.map((experience) => (
-        <li class="">
-            <ExperienciaItem {...experience} />
+        EXPERIENCIA.map((experience, index) => (
+        <li class={`experience-item-${index}`}>
+            <ExperienciaItem 
+                date={experience.date}
+                title={experience.title}
+                company={experience.company}
+                description={experience.description}
+            />
         </li>
         ))
     }
 </ol>
+<script>
+	import { translations } from "../i18n/translations";
+	
+	function getLanguage() {
+		if (typeof window === "undefined") return "en";
+		const stored = localStorage.getItem("language");
+		return stored === "en" || stored === "es" ? stored : "en";
+	}
+	
+	function updateExperienceTranslations() {
+		const lang = getLanguage();
+		const t = translations[lang as keyof typeof translations];
+		
+		for (let index = 0; index < t.experience.items.length; index++) {
+			const li = document.querySelector(`.experience-item-${index}`);
+			if (!li) continue;
+			
+			const experience = t.experience.items[index];
+			if (experience) {
+				const date = li.querySelector("[data-i18n-date]");
+				const title = li.querySelector("[data-i18n-title]");
+				const company = li.querySelector("[data-i18n-company]");
+				const description = li.querySelector("[data-i18n-description]");
+				
+				if (date) date.textContent = experience.date;
+				if (title) title.textContent = experience.title;
+				if (company) company.textContent = experience.company;
+				if (description) description.textContent = experience.description;
+			}
+		}
+	}
+	
+	document.addEventListener("DOMContentLoaded", updateExperienceTranslations);
+	document.addEventListener("astro:page-load", updateExperienceTranslations);
+	document.addEventListener("languagechange", updateExperienceTranslations);
+</script>
   

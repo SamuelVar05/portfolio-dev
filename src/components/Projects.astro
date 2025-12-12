@@ -14,10 +14,16 @@ import Docker from "../components/icons/Docker.astro";
 import Kubernetes from "../components/icons/Kubernetes.astro";
 import GCP from "../components/icons/GCP.astro";
 import React from "../components/icons/React.astro";
+import Flask from "../components/icons/Flask.astro";
 
 import Project from "./Project.astro";
 
 const TAGS = {
+    FLASK: {
+        name: "Flask",
+        classList: "bg-blue-500 text-white",
+        icon: Flask
+    },
     REACT: {
         name: "React",
         classList: "bg-blue-500 text-white",
@@ -116,7 +122,7 @@ const PROJECTS = [
         title: t.projects.items.agroconecta.title,
         description: t.projects.items.agroconecta.description,
         image: "/projects/agroconecta.webp",
-        tags: [TAGS.PYTHON, TAGS.REACT],
+        tags: [TAGS.PYTHON, TAGS.REACT, TAGS.FLASK],
         link: "https://medium.com/p/1a7784baa38c",
         caseStudy: true
     },

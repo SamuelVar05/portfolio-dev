@@ -15,10 +15,16 @@ import Kubernetes from "../components/icons/Kubernetes.astro";
 import GCP from "../components/icons/GCP.astro";
 import React from "../components/icons/React.astro";
 import Flask from "../components/icons/Flask.astro";
+import RabbitMQ from "../components/icons/RabbitMQ.astro";
 
 import Project from "./Project.astro";
 
 const TAGS = {
+    RABBITMQ: {
+        name: "RabbitMQ",
+        classList: "bg-red-500 text-white",
+        icon: RabbitMQ
+    },
     FLASK: {
         name: "Flask",
         classList: "bg-blue-500 text-white",
@@ -113,7 +119,7 @@ const PROJECTS = [
         title: t.projects.items.runpath.title,
         description: t.projects.items.runpath.description,
         image: "/projects/runpath.webp",
-        tags: [TAGS.DOCKER, TAGS.KUBERNETES, TAGS.GCP, TAGS.PYTHON],
+        tags: [TAGS.DOCKER, TAGS.KUBERNETES, TAGS.GCP, TAGS.FLASK, TAGS.RABBITMQ],
         link: "#",
         caseStudy: true,
     },

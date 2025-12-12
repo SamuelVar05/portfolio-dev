@@ -237,6 +237,10 @@ export const translations: Record<Language, Translations> = {
 			featured: "Caso destacado",
 			caseStudy: "Ver estudio del caso",
 			items: {
+				agroconecta: {
+					title: "AgroConecta",
+					description: "AgroConecta es una plataforma web modular diseñada para conectar directamente a pequeños agricultores con compradores utilizando una arquitectura SOFEA. Incluye autenticación segura de usuarios, publicación y búsqueda de productos, y mensajería en tiempo real."
+				},
 				unchaza: {
 					title: "UNChaza",
 					description:

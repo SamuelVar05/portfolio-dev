@@ -176,6 +176,7 @@ export const translations: Record<Language, Translations> = {
 				{ name: "German", level: "B1" },
 				{ name: "French", level: "A2" },
 				{ name: "Catalan", level: "A2" },
+				{ name: "Russian", level: "A2"}
 			],
 		},
 		footer: {
@@ -291,6 +292,7 @@ export const translations: Record<Language, Translations> = {
 				{ name: "Alemán", level: "B1" },
 				{ name: "Francés", level: "A2" },
 				{ name: "Catalán", level: "A2" },
+				{ name: "Ruso", level: "A2"}
 			],
 		},
 		footer: {

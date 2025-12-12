@@ -13,10 +13,16 @@ import Cpp from "../components/icons/Cpp.astro";
 import Docker from "../components/icons/Docker.astro";
 import Kubernetes from "../components/icons/Kubernetes.astro";
 import GCP from "../components/icons/GCP.astro";
+import React from "../components/icons/React.astro";
 
 import Project from "./Project.astro";
 
 const TAGS = {
+    REACT: {
+        name: "React",
+        classList: "bg-blue-500 text-white",
+        icon: React
+    },
     FLUTTER: {
         name: "Flutter",
         classList: "bg-blue-500 text-white",
@@ -104,6 +110,15 @@ const PROJECTS = [
         tags: [TAGS.DOCKER, TAGS.KUBERNETES, TAGS.GCP, TAGS.PYTHON],
         link: "#",
         caseStudy: true,
+    },
+    {
+        key: "agroconecta",
+        title: t.projects.items.agroconecta.title,
+        description: t.projects.items.agroconecta.description,
+        image: "/projects/agroconecta.webp",
+        tags: [TAGS.PYTHON, TAGS.REACT],
+        link: "https://medium.com/p/1a7784baa38c",
+        caseStudy: true
     },
     {
         key: "unchaza",

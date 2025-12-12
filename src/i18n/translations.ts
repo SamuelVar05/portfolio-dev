@@ -122,6 +122,10 @@ export const translations: Record<Language, Translations> = {
 			featured: "Featured case",
 			caseStudy: "Case Study",
 			items: {
+				agroconecta: {
+					title: "AgroConecta",
+					description: "AgroConecta is a modular web platform designed to connect small-scale farmers directly with buyers using a SOFEA architecture. It features secure user authentication, product listing and search, and real-time messaging."
+				},
 				unchaza: {
 					title: "UNChaza",
 					description:
